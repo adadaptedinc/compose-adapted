@@ -27,10 +27,9 @@ import com.adadapted.android.sdk.core.view.AdadaptedComposable
 fun OffScreenZoneView() {
     val isZoneViewOneVisible = remember { mutableStateOf(false) }
     val isZoneViewTwoVisible = remember { mutableStateOf(false) }
-    var zoneContextId by remember { mutableStateOf("organic") }
+    val zoneContextId = remember { mutableStateOf("organic") }
     val scrollState = rememberScrollState()
     val screenHeightPx = with(LocalDensity.current) { LocalConfiguration.current.screenHeightDp.dp.toPx() }
-
 
     Column(modifier = Modifier
         .padding(16.dp)
@@ -48,7 +47,7 @@ fun OffScreenZoneView() {
                     }
                 }
         ) {
-            AdadaptedComposable(LocalContext.current).ZoneView("110002", null, null, isZoneViewOneVisible)
+            AdadaptedComposable(LocalContext.current).ZoneView("110002", null, null, isZoneViewOneVisible, zoneContextId)
         }
             Spacer(modifier = Modifier.height(16.dp))
 
@@ -70,7 +69,7 @@ fun OffScreenZoneView() {
 
                 Button(
                     onClick = {
-                        zoneContextId = ""
+                        zoneContextId.value = ""
                         println("Button ${index + 1} tapped")
                     },
                     modifier = Modifier

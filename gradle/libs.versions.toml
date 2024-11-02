@@ -1,4 +1,5 @@
 [versions]
+accompanistSwiperefresh = "0.28.0"
 agp = "8.7.0"
 androidSdk = "4.0.13"
 kotlin = "2.0.0"
@@ -9,6 +10,7 @@ espressoCore = "3.6.1"
 lifecycleRuntimeKtx = "2.8.6"
 activityCompose = "1.9.3"
 composeBom = "2024.04.01"
+materialPullrefresh = "1.1.0"
 navigationRuntimeKtx = "2.8.3"
 navigationCompose = "2.8.3"
 

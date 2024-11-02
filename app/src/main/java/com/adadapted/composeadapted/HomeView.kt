@@ -22,8 +22,6 @@ import androidx.navigation.compose.composable
 @Composable
 fun HomeView() {
     val navController = rememberNavController()
-
-    // Move the NavHost outside the Scaffold
     NavHost(navController = navController, startDestination = "home") {
         composable("home") {
             Scaffold(
@@ -62,4 +60,3 @@ fun HomeView() {
         composable("offScreenZone") { OffScreenZoneView() }
     }
 }
-

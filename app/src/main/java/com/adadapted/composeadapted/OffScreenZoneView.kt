@@ -1,7 +1,6 @@
 package com.adadapted.composeadapted
 
 import android.annotation.SuppressLint
-import android.content.Context
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
@@ -106,7 +105,6 @@ private fun LayoutCoordinates.isVisible(screenHeightPx: Float): Boolean {
     return bounds.bottom > 0 && bounds.top < screenHeightPx
 }
 
-// Preview function for development
 @Preview(showBackground = true)
 @Composable
 fun OffScreenZoneViewPreview() {

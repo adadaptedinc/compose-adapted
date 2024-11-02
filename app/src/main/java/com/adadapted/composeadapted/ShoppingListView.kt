@@ -1,6 +1,5 @@
 package com.adadapted.composeadapted
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -26,19 +25,35 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.adadapted.android.sdk.core.view.AdadaptedComposable
 import com.adadapted.composeadapted.ui.theme.ComposeAdaptedTheme
+import androidx.compose.runtime.getValue
 
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ShoppingListView(navController: NavController) {
     val viewModel: ShoppingListViewModel = viewModel()
     val shoppingItems by viewModel.shoppingItems.collectAsState()
+    val isRefreshing by viewModel.isRefreshing.collectAsState()
     var newItem by remember { mutableStateOf(TextFieldValue("")) }
 
     Scaffold(
         topBar = { TopAppBar(title = { Text("Shopping List") }) }
-    ) { innerPadding -> // Capture the padding provided by the Scaffold
-        Column(modifier = Modifier.padding(innerPadding)) { // Apply the padding to the column
+    ) { innerPadding ->
+        Column(modifier = Modifier.padding(innerPadding)) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text("Shopping List", modifier = Modifier.align(Alignment.CenterVertically))
+                Button(
+                    onClick = { viewModel.refreshList() },
+                    enabled = !isRefreshing
+                ) {
+                    Text(if (isRefreshing) "Refreshing..." else "Refresh")
+                }
+            }
+
             LazyColumn(modifier = Modifier.weight(1f)) {
                 items(shoppingItems) { item ->
                     Text(item, modifier = Modifier.padding(8.dp))
@@ -55,8 +70,8 @@ fun ShoppingListView(navController: NavController) {
                         .weight(1f)
                         .height(32.dp)
                         .padding(start = 8.dp, end = 8.dp)
-                        .border(BorderStroke(1.dp, Color.Gray)) // Add border
-                        .background(Color.White), // Add background color
+                        .border(BorderStroke(1.dp, Color.Gray))
+                        .background(Color.White),
                 )
 
                 Button(onClick = {

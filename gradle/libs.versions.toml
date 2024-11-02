@@ -1,7 +1,7 @@
 [versions]
 accompanistSwiperefresh = "0.28.0"
 agp = "8.7.0"
-androidSdk = "4.0.13"
+androidSdk = "4.1.0"
 kotlin = "2.0.0"
 coreKtx = "1.13.1"
 junit = "4.13.2"

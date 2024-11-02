@@ -26,7 +26,7 @@ fun HomeView() {
         composable("home") {
             Scaffold(
                 topBar = {
-                    TopAppBar(title = { Text("SwiftUI Adapted", color = Color(0xFFFFA500)) })
+                    TopAppBar(title = { Text("Compose Adapted", color = Color(0xFFFFA500)) })
                 }
             ) { innerPadding ->
                 Column(
@@ -35,7 +35,7 @@ fun HomeView() {
                         .padding(innerPadding),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Text("Test app for Swift UI implementation", fontWeight = FontWeight.Bold)
+                    Text("Test app for Jetpack Compose implementation", fontWeight = FontWeight.Bold)
                     Spacer(modifier = Modifier.height(20.dp))
 
                     Button(

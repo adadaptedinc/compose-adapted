@@ -41,6 +41,10 @@ class ShoppingListViewModel : ViewModel(), AdContentListener, AdadaptedComposabl
         }
     }
 
+    override fun onNonContentAction(zoneId: String, adId: String) {
+        var check = "$zoneId:$adId"
+    }
+
     override fun onAdLoadFailed() {
         var check = true
     }

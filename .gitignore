@@ -26,3 +26,4 @@ replay_pid*
 *.lock
 .gradle/8.9/executionHistory/executionHistory.lock
 *.probe
+.idea/caches/deviceStreaming.xml

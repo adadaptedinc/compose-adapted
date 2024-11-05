@@ -30,63 +30,69 @@ import androidx.compose.runtime.getValue
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ShoppingListView(navController: NavController) {
+    var refreshKey by remember { mutableStateOf(0) }
     val viewModel: ShoppingListViewModel = viewModel()
     val shoppingItems by viewModel.shoppingItems.collectAsState()
     val isRefreshing by viewModel.isRefreshing.collectAsState()
     var newItem by remember { mutableStateOf(TextFieldValue("")) }
 
-    Scaffold(
-        topBar = { TopAppBar(title = { Text("Shopping List") }) }
-    ) { innerPadding ->
-        Column(modifier = Modifier.padding(innerPadding)) {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(8.dp),
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                Text("Shopping List", modifier = Modifier.align(Alignment.CenterVertically))
-                Button(
-                    onClick = { viewModel.refreshList() },
-                    enabled = !isRefreshing
-                ) {
-                    Text(if (isRefreshing) "Refreshing..." else "Refresh")
-                }
-            }
-
-            LazyColumn(modifier = Modifier.weight(1f)) {
-                items(shoppingItems) { item ->
-                    Text(item, modifier = Modifier.padding(8.dp))
-                }
-            }
-
-            Spacer(modifier = Modifier.height(10.dp))
-
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                BasicTextField(
-                    value = newItem,
-                    onValueChange = { newItem = it },
+    key(refreshKey) {
+        Scaffold(
+            topBar = { TopAppBar(title = { Text("Shopping List") }) }
+        ) { innerPadding ->
+            Column(modifier = Modifier.padding(innerPadding)) {
+                Row(
                     modifier = Modifier
-                        .weight(1f)
-                        .height(32.dp)
-                        .padding(start = 8.dp, end = 8.dp)
-                        .border(BorderStroke(1.dp, Color.Gray))
-                        .background(Color.White),
-                )
-
-                Button(onClick = {
-                    if (newItem.text.isNotBlank()) {
-                        viewModel.addItem(newItem.text)
-                        newItem = TextFieldValue("")
+                        .fillMaxWidth()
+                        .padding(8.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Text("Shopping List", modifier = Modifier.align(Alignment.CenterVertically))
+                    Button(
+                        onClick = {
+                            refreshKey++  // Increment the key to refresh the view
+                            viewModel.refreshList()  // Trigger any data refresh in the ViewModel as needed
+                        },
+                        enabled = !isRefreshing
+                    ) {
+                        Text(if (isRefreshing) "Refreshing..." else "Refresh")
                     }
-                }) {
-                    Text("Add Item")
                 }
+
+                LazyColumn(modifier = Modifier.weight(1f)) {
+                    items(shoppingItems) { item ->
+                        Text(item, modifier = Modifier.padding(8.dp))
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(10.dp))
+
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    BasicTextField(
+                        value = newItem,
+                        onValueChange = { newItem = it },
+                        modifier = Modifier
+                            .weight(1f)
+                            .height(32.dp)
+                            .padding(start = 8.dp, end = 8.dp)
+                            .border(BorderStroke(1.dp, Color.Gray))
+                            .background(Color.White),
+                    )
+
+                    Button(onClick = {
+                        if (newItem.text.isNotBlank()) {
+                            viewModel.addItem(newItem.text)
+                            newItem = TextFieldValue("")
+                        }
+                    }) {
+                        Text("Add Item")
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(10.dp))
+
+                AdadaptedComposable(LocalContext.current).ZoneView("102110", viewModel, viewModel)
             }
-
-            Spacer(modifier = Modifier.height(10.dp))
-
-            AdadaptedComposable(LocalContext.current).ZoneView("102110", viewModel, viewModel)
         }
     }
 }

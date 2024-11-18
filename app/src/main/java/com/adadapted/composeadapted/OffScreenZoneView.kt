@@ -1,38 +1,75 @@
-package com.adadapted.composeadapted
-
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.Button
-import androidx.compose.material3.Text
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.ui.layout.LayoutCoordinates
 import androidx.compose.ui.layout.boundsInWindow
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.adadapted.android.sdk.core.view.AdadaptedComposable
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun OffScreenTabbedZoneViews() {
+    var selectedTabIndex by remember { mutableIntStateOf(0) }
+    val tabTitles = listOf("Tab 1", "Tab 2", "Tab 3")
+
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text("Tabbed Zone Views") },
+            )
+        }
+    ) { paddingValues ->
+        Column(
+            modifier = Modifier
+                .padding(paddingValues)
+                .fillMaxSize()
+        ) {
+            // Tab Row with 3 tabs
+            TabRow(selectedTabIndex = selectedTabIndex) {
+                tabTitles.forEachIndexed { index, title ->
+                    Tab(
+                        selected = selectedTabIndex == index,
+                        onClick = { selectedTabIndex = index },
+                        text = { Text(title) }
+                    )
+                }
+            }
+
+            // Display OffScreenZoneView in the selected tab
+            when (selectedTabIndex) {
+                0 -> OffScreenZoneView(zoneId = "110003", adZoneId = "102110")
+                1 -> OffScreenZoneView(zoneId = "110002", adZoneId = "110004")
+                2 -> OffScreenZoneView(zoneId = "110005", adZoneId = "110006")
+            }
+        }
+    }
+}
 
 @SuppressLint("UnrememberedMutableState")
 @Composable
-fun OffScreenZoneView() {
+fun OffScreenZoneView(zoneId: String, adZoneId: String) {
     val isZoneViewOneVisible = remember { mutableStateOf(false) }
     val isZoneViewTwoVisible = remember { mutableStateOf(false) }
     val zoneContextId = remember { mutableStateOf("organic") }
     val scrollState = rememberScrollState()
     val screenHeightPx = with(LocalDensity.current) { LocalConfiguration.current.screenHeightDp.dp.toPx() }
 
-    Column(modifier = Modifier
-        .padding(16.dp)
-        .verticalScroll(scrollState)
+    Column(
+        modifier = Modifier
+            .padding(16.dp)
+            .verticalScroll(scrollState)
     ) {
         // Zone View One
         Box(
@@ -46,11 +83,11 @@ fun OffScreenZoneView() {
                     }
                 }
         ) {
-            AdadaptedComposable(LocalContext.current).ZoneView("110002", null, null, isZoneViewOneVisible, zoneContextId)
+            AdadaptedComposable(LocalContext.current).ZoneView(zoneId, null, null, isZoneViewOneVisible, zoneContextId)
         }
-            Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(16.dp))
 
-        //dummy items
+        // Dummy items
         repeat(5) { index ->
             Column(
                 modifier = Modifier
@@ -58,7 +95,7 @@ fun OffScreenZoneView() {
                     .padding(vertical = 10.dp)
             ) {
                 Text(
-                    text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                    text = "Sample content $index",
                     modifier = Modifier
                         .padding(16.dp)
                         .background(Color.Gray.copy(alpha = 0.1f))
@@ -92,7 +129,7 @@ fun OffScreenZoneView() {
                     }
                 }
         ) {
-            AdadaptedComposable(LocalContext.current).ZoneView("102110", null, null, isZoneViewTwoVisible)
+            AdadaptedComposable(LocalContext.current).ZoneView(adZoneId, null, null, isZoneViewTwoVisible)
         }
         Spacer(modifier = Modifier.height(16.dp))
     }
@@ -100,13 +137,11 @@ fun OffScreenZoneView() {
 
 private fun LayoutCoordinates.isVisible(screenHeightPx: Float): Boolean {
     val bounds = this.boundsInWindow()
-
-    // Check if the bounds of the layout are within the visible area of the screen
     return bounds.bottom > 0 && bounds.top < screenHeightPx
 }
 
 @Preview(showBackground = true)
 @Composable
-fun OffScreenZoneViewPreview() {
-    OffScreenZoneView()
+fun OffscreenTabbedZoneViewsPreview() {
+    OffScreenTabbedZoneViews()
 }

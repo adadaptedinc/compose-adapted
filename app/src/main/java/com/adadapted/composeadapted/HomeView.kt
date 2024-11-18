@@ -1,5 +1,6 @@
 package com.adadapted.composeadapted
 
+import OffScreenTabbedZoneViews
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
@@ -57,6 +58,6 @@ fun HomeView() {
             }
         }
         composable("shoppingList") { ShoppingListView(navController) }
-        composable("offScreenZone") { OffScreenZoneView() }
+        composable("offScreenZone") { OffScreenTabbedZoneViews() }
     }
 }

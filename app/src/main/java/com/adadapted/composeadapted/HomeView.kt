@@ -43,14 +43,14 @@ fun HomeView() {
                         onClick = { navController.navigate("shoppingList") },
                         modifier = Modifier.padding(vertical = 8.dp)
                     ) {
-                        Text("Go to List View", color = Color.Blue)
+                        Text("Go to List View", color = Color.White)
                     }
 
                     Button(
                         onClick = { navController.navigate("offScreenZone") },
                         modifier = Modifier.padding(vertical = 8.dp)
                     ) {
-                        Text("Go to Off Screen View", color = Color.Blue)
+                        Text("Go to Off Screen View", color = Color.White)
                     }
 
                     Spacer(modifier = Modifier.weight(1f))

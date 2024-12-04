@@ -49,7 +49,7 @@ fun OffScreenTabbedZoneViews() {
 
             // Display OffScreenZoneView in the selected tab
             when (selectedTabIndex) {
-                0 -> OffScreenZoneView(zoneId = "110003", adZoneId = "102110")
+                0 -> OffScreenZoneView(zoneId = "101990", adZoneId = "102166") //101990 102166 / 110003 102110
                 1 -> OffScreenZoneView(zoneId = "110002", adZoneId = "110004")
                 2 -> OffScreenZoneView(zoneId = "110005", adZoneId = "110006")
             }
@@ -75,7 +75,7 @@ fun OffScreenZoneView(zoneId: String, adZoneId: String) {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(100.dp)
+                .wrapContentHeight()
                 .onGloballyPositioned { layoutCoordinates ->
                     val isVisible = layoutCoordinates.isVisible(screenHeightPx)
                     if (isVisible != isZoneViewOneVisible.value) {
@@ -83,7 +83,10 @@ fun OffScreenZoneView(zoneId: String, adZoneId: String) {
                     }
                 }
         ) {
-            AdadaptedComposable(LocalContext.current).ZoneView(zoneId, null, null, isZoneViewOneVisible, zoneContextId)
+            AdadaptedComposable(LocalContext.current).ZoneView(zoneId, null, null, isZoneViewOneVisible, zoneContextId, isFixedAspectRatioEnabled = true, modifier = Modifier
+                .fillMaxWidth()
+                .wrapContentHeight()
+                .padding(start = 4.dp, end = 4.dp))
         }
         Spacer(modifier = Modifier.height(16.dp))
 
@@ -129,7 +132,7 @@ fun OffScreenZoneView(zoneId: String, adZoneId: String) {
                     }
                 }
         ) {
-            AdadaptedComposable(LocalContext.current).ZoneView(adZoneId, null, null, isZoneViewTwoVisible)
+            AdadaptedComposable(LocalContext.current).ZoneView(adZoneId, null, null, isZoneViewTwoVisible, isFixedAspectRatioEnabled = true)
         }
         Spacer(modifier = Modifier.height(16.dp))
     }

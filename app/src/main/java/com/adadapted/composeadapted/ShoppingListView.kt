@@ -57,9 +57,9 @@ fun ShoppingListView(navController: NavController) {
 
             // Content for the selected tab
             when (selectedTabIndex) {
-                0 -> TabContent("102110")
-                1 -> TabContent("110002")
-                2 -> TabContent("110003")
+                0 -> TabContent("101990") //101990 / 102110
+                1 -> TabContent("102166") //102166 / 110002
+                2 -> TabContent("101990")
             }
         }
     }
@@ -124,7 +124,10 @@ fun TabContent(
         Spacer(modifier = Modifier.height(10.dp))
 
         // ZoneView Component
-        AdadaptedComposable(LocalContext.current).ZoneView(zoneId, viewModel, viewModel)
+        AdadaptedComposable(LocalContext.current).ZoneView(zoneId, viewModel, viewModel, isFixedAspectRatioEnabled = true, modifier = Modifier
+            .fillMaxWidth()
+            .wrapContentHeight()
+            .padding(start = 4.dp, end = 4.dp))
     }
 }
 

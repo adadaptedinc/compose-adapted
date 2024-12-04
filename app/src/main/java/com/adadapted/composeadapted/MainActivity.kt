@@ -40,7 +40,7 @@ class MainActivity : ComponentActivity() {
     private fun initializeAdAdapted() {
         val tag = "ComposeAdapted"
         AdAdapted
-            .withAppId("7D58810X6333241C")
+            .withAppId("NJIXNMRHZDC5ODCY") //NJIXNMRHZDC5ODCY - flipp  7D58810X6333241C - dev
             .inEnv(AdAdapted.Env.DEV)
             .enableKeywordIntercept(true)
             .setSdkSessionListener(createSdkSessionListener(tag))

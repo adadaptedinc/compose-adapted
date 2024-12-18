@@ -16,6 +16,8 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.viewinterop.AndroidView
+import com.adadapted.android.sdk.core.view.AaZoneView
 import com.adadapted.android.sdk.core.view.AdadaptedComposable
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -66,6 +68,13 @@ fun OffScreenZoneView(zoneId: String, adZoneId: String) {
     val scrollState = rememberScrollState()
     val screenHeightPx = with(LocalDensity.current) { LocalConfiguration.current.screenHeightDp.dp.toPx() }
 
+    //testing
+    val aaZoneView = AaZoneView(LocalContext.current)
+    aaZoneView.init(zoneId)
+    aaZoneView.setAdZoneVisibility(true)
+    aaZoneView.configureFixedAspectRatio(true, 32)
+    aaZoneView.onStart()
+
     Column(
         modifier = Modifier
             .padding(16.dp)
@@ -83,10 +92,25 @@ fun OffScreenZoneView(zoneId: String, adZoneId: String) {
                     }
                 }
         ) {
-            AdadaptedComposable(LocalContext.current).ZoneView(zoneId, null, null, isZoneViewOneVisible, zoneContextId, isFixedAspectRatioEnabled = true, modifier = Modifier
-                .fillMaxWidth()
-                .wrapContentHeight()
-                .padding(start = 4.dp, end = 4.dp))
+
+//            AndroidView(
+//                modifier = Modifier.padding(16.dp),
+//                factory = { aaZoneView }
+//            )
+
+            AdadaptedComposable(LocalContext.current).ZoneView(
+                zoneId,
+                null,
+                null,
+                isZoneViewOneVisible,
+                zoneContextId,
+                isFixedAspectRatioEnabled = true,
+                fixedAspectPaddingOffset = 20,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .wrapContentHeight()
+                    .padding(4.dp)
+            )
         }
         Spacer(modifier = Modifier.height(16.dp))
 

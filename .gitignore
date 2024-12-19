@@ -24,9 +24,4 @@ hs_err_pid*
 replay_pid*
 *.bin
 *.lock
-.gradle/8.9/executionHistory/executionHistory.lock
-*.probe
-.idea/caches/deviceStreaming.xml
-*.lock
-*.bin
 *.probe

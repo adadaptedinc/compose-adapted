@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import com.adadapted.android.sdk.core.view.AaZoneView
 import com.adadapted.android.sdk.core.view.AdadaptedComposable
+//import com.adadapted.android.sdk.core.view.ZonePadding
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -105,12 +106,13 @@ fun OffScreenZoneView(zoneId: String, adZoneId: String) {
                 isZoneViewOneVisible,
                 zoneContextId,
                 isFixedAspectRatioEnabled = true,
-                fixedAspectPaddingOffset = 20,
+                fixedAspectPaddingOffset = 32,
                 modifier = Modifier
                     .fillMaxWidth()
                     .wrapContentHeight()
-                    .padding(4.dp)
+                    .padding(16.dp)
             )
+
         }
         Spacer(modifier = Modifier.height(16.dp))
 

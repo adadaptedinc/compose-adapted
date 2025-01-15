@@ -94,24 +94,27 @@ fun OffScreenZoneView(zoneId: String, adZoneId: String) {
                 }
         ) {
 
-//            AndroidView(
-//                modifier = Modifier.padding(16.dp),
-//                factory = { aaZoneView }
-//            )
-
-            AdadaptedComposable(LocalContext.current).ZoneView(
-                zoneId,
-                null,
-                null,
-                isZoneViewOneVisible,
-                zoneContextId,
-                isFixedAspectRatioEnabled = true,
-                fixedAspectPaddingOffset = 32,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .wrapContentHeight()
-                    .padding(16.dp)
+            AndroidView(
+                modifier = Modifier.padding(16.dp),
+                factory = { aaZoneView },
+                update = {
+                    aaZoneView.onStop()
+                }
             )
+
+//            AdadaptedComposable(LocalContext.current).ZoneView(
+//                zoneId,
+//                null,
+//                null,
+//                isZoneViewOneVisible,
+//                zoneContextId,
+//                isFixedAspectRatioEnabled = true,
+//                fixedAspectPaddingOffset = 32,
+//                modifier = Modifier
+//                    .fillMaxWidth()
+//                    .wrapContentHeight()
+//                    .padding(16.dp)
+//            )
 
         }
         Spacer(modifier = Modifier.height(16.dp))

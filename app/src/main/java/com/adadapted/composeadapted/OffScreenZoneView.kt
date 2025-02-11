@@ -52,7 +52,7 @@ fun OffScreenTabbedZoneViews() {
 
             // Display OffScreenZoneView in the selected tab
             when (selectedTabIndex) {
-                0 -> OffScreenZoneView(zoneId = "101990", adZoneId = "102166") //101990 102166 / 110003 102110
+                0 -> OffScreenZoneView(zoneId = "101990", adZoneId = "101990") //101990 102166 / 110003 102110
                 1 -> OffScreenZoneView(zoneId = "110002", adZoneId = "110004")
                 2 -> OffScreenZoneView(zoneId = "110005", adZoneId = "110006")
             }
@@ -161,7 +161,7 @@ fun OffScreenZoneView(zoneId: String, adZoneId: String) {
                     }
                 }
         ) {
-            AdadaptedComposable(LocalContext.current).ZoneView(adZoneId, null, null, isZoneViewTwoVisible, isFixedAspectRatioEnabled = true)
+            AdadaptedComposable(LocalContext.current).ZoneView(zoneId, null, null, isZoneViewTwoVisible, isFixedAspectRatioEnabled = true)
         }
         Spacer(modifier = Modifier.height(16.dp))
     }

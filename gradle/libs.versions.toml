@@ -8,11 +8,11 @@ junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 lifecycleRuntimeKtx = "2.8.7"
-activityCompose = "1.9.3"
-composeBom = "2024.12.01"
+activityCompose = "1.10.0"
+composeBom = "2025.01.01"
 materialPullrefresh = "1.1.0"
-navigationRuntimeKtx = "2.8.5"
-navigationCompose = "2.8.5"
+navigationRuntimeKtx = "2.8.6"
+navigationCompose = "2.8.6"
 
 [libraries]
 android-sdk = { module = "com.adadapted:android-sdk", version.ref = "androidSdk" }

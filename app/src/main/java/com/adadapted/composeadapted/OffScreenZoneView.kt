@@ -19,6 +19,8 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import com.adadapted.android.sdk.core.view.AaZoneView
 import com.adadapted.android.sdk.core.view.AdadaptedComposable
+import com.adadapted.composeadapted.ShoppingListViewModel
+
 //import com.adadapted.android.sdk.core.view.ZonePadding
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -63,6 +65,7 @@ fun OffScreenTabbedZoneViews() {
 @SuppressLint("UnrememberedMutableState")
 @Composable
 fun OffScreenZoneView(zoneId: String, adZoneId: String) {
+    val viewModel = ShoppingListViewModel()
     val isZoneViewOneVisible = remember { mutableStateOf(false) }
     val isZoneViewTwoVisible = remember { mutableStateOf(false) }
     val zoneContextId = remember { mutableStateOf("organic") }
@@ -74,7 +77,7 @@ fun OffScreenZoneView(zoneId: String, adZoneId: String) {
     aaZoneView.init(zoneId)
     aaZoneView.setAdZoneVisibility(true)
     aaZoneView.configureFixedAspectRatio(true, 32)
-    aaZoneView.onStart()
+    aaZoneView.onStart(contentListener = viewModel)
 
     Column(
         modifier = Modifier
@@ -161,7 +164,7 @@ fun OffScreenZoneView(zoneId: String, adZoneId: String) {
                     }
                 }
         ) {
-            AdadaptedComposable(LocalContext.current).ZoneView(zoneId, null, null, isZoneViewTwoVisible, isFixedAspectRatioEnabled = true)
+            AdadaptedComposable(LocalContext.current).ZoneView(zoneId, null, viewModel, isZoneViewTwoVisible, isFixedAspectRatioEnabled = true)
         }
         Spacer(modifier = Modifier.height(16.dp))
     }

@@ -1,5 +1,6 @@
 package com.adadapted.composeadapted
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -65,6 +66,7 @@ fun ShoppingListView(navController: NavController) {
     }
 }
 
+@SuppressLint("ViewModelConstructorInComposable")
 @Composable
 fun TabContent(
     zoneId: String

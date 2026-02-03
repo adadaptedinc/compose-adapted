@@ -1,6 +1,5 @@
 package com.adadapted.composeadapted
 
-import OffScreenTabbedZoneViews
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button

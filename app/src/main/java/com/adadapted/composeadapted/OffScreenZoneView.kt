@@ -1,3 +1,5 @@
+package com.adadapted.composeadapted
+
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -19,7 +21,6 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import com.adadapted.android.sdk.core.view.AaZoneView
 import com.adadapted.android.sdk.core.view.AdadaptedComposable
-import com.adadapted.composeadapted.ShoppingListViewModel
 
 //import com.adadapted.android.sdk.core.view.ZonePadding
 
@@ -62,7 +63,7 @@ fun OffScreenTabbedZoneViews() {
     }
 }
 
-@SuppressLint("UnrememberedMutableState")
+@SuppressLint("UnrememberedMutableState", "ViewModelConstructorInComposable")
 @Composable
 fun OffScreenZoneView(zoneId: String, adZoneId: String) {
     val viewModel = ShoppingListViewModel()

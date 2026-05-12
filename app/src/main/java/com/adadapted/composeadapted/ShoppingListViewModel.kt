@@ -4,13 +4,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.adadapted.android.sdk.core.ad.AdContentListener
 import com.adadapted.android.sdk.core.atl.AddToListContent
-import com.adadapted.android.sdk.core.view.AdadaptedComposable
+//import com.adadapted.android.sdk.core.view.AdadaptedComposable
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-class ShoppingListViewModel : ViewModel(), AdContentListener, AdadaptedComposable.Listener {
+class ShoppingListViewModel : ViewModel(), AdContentListener{ //AdadaptedComposable.Listener {
     private val _shoppingItems = MutableStateFlow(listOf("Eggs", "Bread", "Oranges"))
     val shoppingItems: StateFlow<List<String>> = _shoppingItems
 
@@ -45,15 +45,15 @@ class ShoppingListViewModel : ViewModel(), AdContentListener, AdadaptedComposabl
         var check = "$zoneId:$adId"
     }
 
-    override fun onAdLoadFailed() {
-        var check = true
-    }
-
-    override fun onAdLoaded() {
-        var check = true
-    }
-
-    override fun onZoneHasAds(hasAds: Boolean) {
-        var check = hasAds
-    }
+//    override fun onAdLoadFailed() {
+//        var check = true
+//    }
+//
+//    override fun onAdLoaded() {
+//        var check = true
+//    }
+//
+//    override fun onZoneHasAds(hasAds: Boolean) {
+//        var check = hasAds
+//    }
 }

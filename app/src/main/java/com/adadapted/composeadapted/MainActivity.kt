@@ -19,7 +19,7 @@ import com.adadapted.android.sdk.core.atl.AddToListContent
 import com.adadapted.android.sdk.core.atl.AddToListItem
 import com.adadapted.android.sdk.core.interfaces.AaSdkAdditContentListener
 import com.adadapted.android.sdk.core.interfaces.AaSdkEventListener
-import com.adadapted.android.sdk.core.interfaces.AaSdkSessionListener
+//import com.adadapted.android.sdk.core.interfaces.AaSdkSessionListener
 import com.adadapted.composeadapted.ui.theme.ComposeAdaptedTheme
 import java.util.Locale
 
@@ -43,18 +43,18 @@ class MainActivity : ComponentActivity() {
             .withAppId("NJIXNMRHZDC5ODCY") //NJIXNMRHZDC5ODCY - flipp  7D58810X6333241C - dev
             .inEnv(AdAdapted.Env.DEV)
             .enableKeywordIntercept(true)
-            .setSdkSessionListener(createSdkSessionListener(tag))
+            //.setSdkSessionListener(createSdkSessionListener(tag))
             .setSdkEventListener(createSdkEventListener(tag))
             .setSdkAdditContentListener(createSdkContentListener())
             .enableDebugLogging()
             .start(this)
     }
-    private fun createSdkSessionListener(tag: String) = object : AaSdkSessionListener {
-        override fun onHasAdsToServe(hasAds: Boolean, availableZoneIds: List<String>) {
-            Log.i(tag, "Has Ads To Serve: $hasAds")
-            Log.i(tag, "The following zones have ads to serve: $availableZoneIds")
-        }
-    }
+//    private fun createSdkSessionListener(tag: String) = object : AaSdkSessionListener {
+//        override fun onHasAdsToServe(hasAds: Boolean, availableZoneIds: List<String>) {
+//            Log.i(tag, "Has Ads To Serve: $hasAds")
+//            Log.i(tag, "The following zones have ads to serve: $availableZoneIds")
+//        }
+//    }
 
     private fun createSdkEventListener(tag: String) = object : AaSdkEventListener {
         override fun onNextAdEvent(zoneId: String, eventType: String) {

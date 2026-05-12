@@ -19,7 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.adadapted.android.sdk.core.view.AdadaptedComposable
+//import com.adadapted.android.sdk.core.view.AdadaptedComposable
 import com.adadapted.composeadapted.ui.theme.ComposeAdaptedTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -126,10 +126,10 @@ fun TabContent(
         Spacer(modifier = Modifier.height(10.dp))
 
         // ZoneView Component
-        AdadaptedComposable(LocalContext.current).ZoneView(zoneId, viewModel, viewModel, isFixedAspectRatioEnabled = true, modifier = Modifier
-            .fillMaxWidth()
-            .wrapContentHeight()
-            .padding(start = 4.dp, end = 4.dp))
+        //AdadaptedComposable(LocalContext.current).ZoneView(zoneId, viewModel, viewModel, isFixedAspectRatioEnabled = true, modifier = Modifier
+//            .fillMaxWidth()
+//            .wrapContentHeight()
+//            .padding(start = 4.dp, end = 4.dp))
     }
 }
 

@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import com.adadapted.android.sdk.core.view.AaZoneView
-import com.adadapted.android.sdk.core.view.AdadaptedComposable
+//import com.adadapted.android.sdk.core.view.AdadaptedComposable
 
 //import com.adadapted.android.sdk.core.view.ZonePadding
 
@@ -165,7 +165,7 @@ fun OffScreenZoneView(zoneId: String, adZoneId: String) {
                     }
                 }
         ) {
-            AdadaptedComposable(LocalContext.current).ZoneView(zoneId, null, viewModel, isZoneViewTwoVisible, isFixedAspectRatioEnabled = true)
+            //AdadaptedComposable(LocalContext.current).ZoneView(zoneId, null, viewModel, isZoneViewTwoVisible, isFixedAspectRatioEnabled = true)
         }
         Spacer(modifier = Modifier.height(16.dp))
     }
